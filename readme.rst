@@ -40,38 +40,38 @@ Plagiarism Check
 
 .. code:: python
 
-vocJupyterGradeNotebookWithTraceback hw00.ipynb
+	vocJupyterGradeNotebookWithTraceback hw00.ipynb
 
-python << EOF
-import nbformat
+	python << EOF
+	import nbformat
 
-filename = "hw00.ipynb"
-nb = nbformat.read(filename, as_version=nbformat.NO_CONVERT)
-starter_code_nb = nbformat.read("../resource/startercode/" + filename,as_version=nbformat.NO_CONVERT)
+	filename = "hw00.ipynb"
+	nb = nbformat.read(filename, as_version=nbformat.NO_CONVERT)
+	starter_code_nb = nbformat.read("../resource/startercode/" + filename,as_version=nbformat.NO_CONVERT)
 
-code_input = ""
-for cell in nb['cells']:
-    if 'nbgrader' in cell['metadata'].keys():
-        if cell['metadata']['nbgrader']['solution'] == True:
-            code_input += cell['source']
-            code_input += "\n"
+	code_input = ""
+	for cell in nb['cells']:
+    		if 'nbgrader' in cell['metadata'].keys():
+       	 		if cell['metadata']['nbgrader']['solution'] == True:
+            			code_input += cell['source']
+            			code_input += "\n"
 
-starter_code = ""
-for cell in starter_code_nb['cells']:
-    if 'nbgrader' in cell['metadata'].keys():
-        if cell['metadata']['nbgrader']['solution'] == True:
-            starter_code += cell['source']
-            starter_code += "\n"
+	starter_code = ""
+	for cell in starter_code_nb['cells']:
+    		if 'nbgrader' in cell['metadata'].keys():
+        		if cell['metadata']['nbgrader']['solution'] == True:
+            			starter_code += cell['source']
+            			starter_code += "\n"
 
-code_input_lines =  code_input.split("\n")
-starter_code_lines = starter_code.split("\n")
+	code_input_lines =  code_input.split("\n")
+	starter_code_lines = starter_code.split("\n")
 
-student_input_lines = [l for l in code_input_lines if not l in starter_code_lines]
+	student_input_lines = [l for l in code_input_lines if not l in starter_code_lines]
 
-with open("student_input.py", "w") as f:
-    f.write("\n".join(student_input_lines))
-EOF
-vocSaveExecutionDataPublic student_input.py
+	with open("student_input.py", "w") as f:
+    	f.write("\n".join(student_input_lines))
+	EOF
+	vocSaveExecutionDataPublic student_input.py
 
 - Assignment Setup Page
 - Go to Dashboard
